@@ -20,7 +20,7 @@ app.use(cookieParser())
 app.use('/api/users', userRoutes)
 app.use('/api/blogs', blogRoutes)
 app.get('/', (req, res) => {
-   res.send('API is running...')
+   res.send('API is running good...')
 })
 
 export default app
