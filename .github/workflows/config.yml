@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20"
-      - name: Install dependencies
-        run: npm install
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t blogging-system-api-api:latest .
 
   test:
     runs-on: ubuntu-latest
@@ -49,4 +50,4 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer $RENDER_API_KEY" \
           -d '{"branch":"main"}' \
-          https://api.render.com/deploy/srv-co62884f7o1s73aa7jr0?key=$RENDER_DEPLOY_HOOK
+          https://api.render.com/deploy/srv-cqk0u6dds78s73f5udf0?key=$RENDER_DEPLOY_HOOK
